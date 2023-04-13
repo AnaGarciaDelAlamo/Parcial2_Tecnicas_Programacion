@@ -22,64 +22,59 @@ public class Main {
         //System.out.println(barcos_1.size());
 
 
-        //Jugador 1
         System.out.println("Confuguración de los barcos jugador 1");
-        //System.out.println("Ingrese la cantidad de barcos (3 max):");
-        //int shipCount = sc.nextInt();
+        System.out.println("Ingrese la cantidad de barcos (3 max):");
+        int maxShipCount = sc.nextInt();
         int shipCount = 0;
-
 
         ArrayList<Ship> barcos_1 = new ArrayList<>();
 
+        while (shipCount < maxShipCount) {
+            System.out.println("Ingrese el tipo de barco (Battleship, Canoe o Frigate)");
+            String shipType = sc.next();
 
-        for(int i = 0; i < 3; i++){
-            boolean ejecutar = true;
-            do{
-                System.out.println("Ingrese el tipo de barco (Battleship, Canoe o Frigate)");
-                String shipType = sc.next();
+            System.out.println("Ingrese las coordenadas de inicio (x, y):");
+            int startX = sc.nextInt();
+            int startY = sc.nextInt();
+            Point startPoint = new Point(startX, startY);
 
-                System.out.println("Ingrese las coordenadas de inicio (x, y):");
-                int startX = sc.nextInt();
-                int startY = sc.nextInt();
-                Point startPoint = new Point(startX, startY);
+            System.out.println("Ingrese las coordenadas de fin (x, y):");
+            int endX = sc.nextInt();
+            int endY = sc.nextInt();
+            Point endPoint = new Point(endX, endY);
 
-                System.out.println("Ingrese las coordenadas de fin (x, y):");
-                int endX = sc.nextInt();
-                int endY = sc.nextInt();
-                Point endPoint = new Point(endX, endY);
+            switch (shipType){
+                case "Battleship":
+                    Battleship battleship = new Battleship(startPoint, endPoint);
+                    barcos_1.add(battleship);
+                    shipCount++;
+                    break;
+                case "Canoe":
+                    Canoe canoe = new Canoe(startPoint, endPoint);
+                    barcos_1.add(canoe);
+                    shipCount++;
+                    break;
+                case "Frigate":
+                    Frigate frigate = new Frigate(startPoint, endPoint);
+                    barcos_1.add(frigate);
+                    shipCount++;
+                    break;
+                default:
+                    System.out.println("Tipo de barco no válido.");
+            }
 
-
-
-                switch (shipType){
-                    case "Battleship":
-                        Battleship battleship = new Battleship(startPoint, endPoint);
-                        barcos_1.add(battleship);
-                        shipCount++;
-                        break;
-                    case "Canoe":
-                        Canoe canoe = new Canoe(startPoint, endPoint);
-                        barcos_1.add(canoe);
-                        shipCount++;
-                        break;
-                    case "Frigate":
-                        Frigate frigate = new Frigate(startPoint, endPoint);
-                        barcos_1.add(frigate);
-                        shipCount++;
-                        break;
-                }
-
-                if (shipCount == 3){
-                    ejecutar = false;
-                }
-
-            }while(ejecutar == true);
+            if (shipCount == maxShipCount){
+                break;
+            }
         }
+
+
 
         User usuario1 = new User(barcos_1);
 
 
-        //Jugador 1
-        System.out.println("Confuguración de los barcos jugador 2");
+        //Jugador 2
+        /*System.out.println("Confuguración de los barcos jugador 2");
         //System.out.println("Ingrese la cantidad de barcos (3 max):");
         //int shipCount = sc.nextInt();
         int shipCount2 = 0;
@@ -127,7 +122,7 @@ public class Main {
                 }
 
             }while(ejecutar2 == true);
-        }
+        }*/
 
 
     }
