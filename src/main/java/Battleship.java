@@ -2,6 +2,7 @@ import java.awt.*;
 
 public class Battleship extends Ship {
     private boolean[] isolatedHits;
+    private int SIZE = 5;
 
     public Battleship(Point start, Point end) {
         super(5, start, end);
