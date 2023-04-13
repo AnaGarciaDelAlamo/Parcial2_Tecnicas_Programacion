@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class User {
     private ArrayList<Ship> ships;
-    private boolean is_alive;
+    private boolean isAlive;
 
     public User(ArrayList<Ship> ships) throws Exception {
         if (ships == null || ships.size() == 0) {
@@ -15,48 +15,55 @@ public class User {
             }
         }
         this.ships = ships;
-        this.is_alive = true;
+        this.isAlive = true;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public void die(){
+        this.isAlive = false;
     }
 
     public ArrayList<Ship> getShips() {
         return ships;
     }
+    /*Para ships no sería necesario un setter porque ya comprobamos
+    que no sea nulo en el constructor
+     */
 
-    public void setShips(ArrayList<Ship> ships) {
-        this.ships = ships;
-    }
-
-    public boolean isAlive() {
-        return is_alive;
-    }
-
-    public void die() {
-        this.is_alive = false;
-    }
-
-    public boolean attack(Point shot_point, User user) throws Exception {
-        if (shot_point == null || user == null) {
-            throw new Exception("Los parámetros no pueden ser nulos");
+    public boolean attack(Point shotPoint, User user) throws Exception{
+        if(shotPoint == null){
+            throw new Exception("El punto de disparo no puede ser nulo");
+        }
+        if(user == null){
+            throw new Exception("El usuario no puede ser nulo");
         }
 
-        boolean hit = false;
-        for (Ship ship : user.getShips()) {
-            if (ship.getShot(shot_point)) {
-                hit = true;
-                if (ship.isSunk()) {
-                    System.out.println("¡Barco hundido!");
-                }
-                break;
+        for(Ship ship : user.getShips()){
+            if (ship.get_shot(shotPoint)) {
+                System.out.println("Barco tocado");
+                if(ship.isSunk())
+                    ships.remove(ship);
+                System.out.println(ships.size());
+                return true;
             }
         }
-
-        return hit;
+        return false;
     }
 
-    public void getShot(Point shot_point) {
-        for (Ship ship : ships) {
-            ship.getShot(shot_point);
-        }
+    private void removeShip(Ship ship){
+
+        System.out.println(this.ships.indexOf(ship));
+        System.out.println(this.ships.size());
+        this.ships.remove(ship);
+        System.out.println(this.ships.size());
     }
 }
+
 
