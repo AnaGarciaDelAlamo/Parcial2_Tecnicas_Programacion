@@ -129,6 +129,13 @@ public class Main {
 
         //Juego
         System.out.println("Empieza el juego");
+        System.out.println("Jugador 1 ataca");
+        System.out.println("Ingrese las coordenadas de ataque (x, y):");
+        int attackX = sc.nextInt();
+        int attackY = sc.nextInt();
+        Point attackPoint = new Point(attackX, attackY);
+        usuario1.attack(attackPoint, usuario2);
+
 
     }
 }

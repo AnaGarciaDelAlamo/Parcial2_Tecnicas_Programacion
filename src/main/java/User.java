@@ -60,9 +60,9 @@ public class User {
     private void removeShip(Ship ship){
 
         System.out.println(this.ships.indexOf(ship));
-        System.out.println(this.ships.size());
+        //System.out.println(this.ships.size());
         this.ships.remove(ship);
-        System.out.println(this.ships.size());
+        //System.out.println(this.ships.size());
     }
 }
 
