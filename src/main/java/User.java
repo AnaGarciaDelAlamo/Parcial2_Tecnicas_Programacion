@@ -50,7 +50,7 @@ public class User {
                 System.out.println("Barco tocado");
                 if(ship.isSunk())
                     ships.remove(ship);
-                System.out.println(ships.size());
+                //System.out.println(ships.size());
                 return true;
             }
         }
@@ -59,7 +59,7 @@ public class User {
 
     private void removeShip(Ship ship){
 
-        System.out.println(this.ships.indexOf(ship));
+        //System.out.println(this.ships.indexOf(ship));
         //System.out.println(this.ships.size());
         this.ships.remove(ship);
         //System.out.println(this.ships.size());
