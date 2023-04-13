@@ -1,66 +1,103 @@
 import java.awt.*;
 
 public class Battleship extends Ship {
-    private boolean[] isolatedHits;
     private int SIZE = 5;
+    private boolean[] isolatedHits;
+    private boolean hasIsolatedHits;
+    private boolean isSunk;
 
     public Battleship(Point start, Point end) {
-        super(5, start, end);
+        super(start, end);
         isolatedHits = new boolean[3];
+        hasIsolatedHits = false;
+        isSunk = false;
     }
+
+
 
     @Override
-    public boolean getShot(Point shotPoint) {
-        boolean hit = super.getShot(shotPoint);
-        if (hit) {
-            int hitIndex = getIsolatedHitIndex(shotPoint);
-            if (hitIndex != -1) {
-                isolatedHits[hitIndex] = true;
-                if (areIsolatedHitsSunk()) {
-                    hits = size;
+    public boolean get_shot(Point hitPoint) {
+        boolean isHit = super.get_shot(hitPoint);
+        if (isHit && !isSunk) {
+            if (isIsolated(hitPoint)) {
+                int index = getIsolatedHitIndex(hitPoint);
+                isolatedHits[index] = true;
+                if (checkIsolatedHits()) {
+                    isSunk = true;
+                    return true;
                 }
+            } else {
+                hasIsolatedHits = true;
             }
         }
-        return hit;
+        return isHit;
     }
 
-    private int getIsolatedHitIndex(Point shotPoint) {
-        if (direction == CardinalPoints.NORTH) {
-            if (shotPoint.getX() != start.getX()) {
-                return -1;
-            }
-            int y = (int) shotPoint.getY();
-            if (y == start.y + 1) {
-                return 0;
-            } else if (y == start.y + 3) {
-                return 1;
-            } else if (y == start.y + 4) {
-                return 2;
-            }
-        } else if (direction == CardinalPoints.EAST) {
-            if (shotPoint.getY() != start.getY()) {
-                return -1;
-            }
-            int x = (int) shotPoint.getX();
-            if (x == start.x + 1) {
-                return 0;
-            } else if (x == start.x + 3) {
-                return 1;
-            } else if (x == start.x + 4) {
-                return 2;
-            }
+    private boolean isIsolated(Point hitPoint) {
+        int hitX = (int) hitPoint.getX();
+        int hitY = (int) hitPoint.getY();
+        int startX = (int) start.getX();
+        int endX = (int) end.getX();
+        int startY = (int) start.getY();
+        int endY = (int) end.getY();
+
+        if (hitX == startX && hitY == startY - 1) {
+            return true;
+        } else if (hitX == startX && hitY == endY + 1) {
+            return true;
+        } else if (hitX == endX && hitY == startY - 1) {
+            return true;
+        } else if (hitX == endX && hitY == endY + 1) {
+            return true;
+        } else if (hitY == startY && hitX == startX - 1) {
+            return true;
+        } else if (hitY == startY && hitX == endX + 1) {
+            return true;
+        } else if (hitY == endY && hitX == startX - 1) {
+            return true;
+        } else if (hitY == endY && hitX == endX + 1) {
+            return true;
         }
-        return -1;
+        return false;
     }
 
-    private boolean areIsolatedHitsSunk() {
-        for (boolean isolatedHit : isolatedHits) {
-            if (!isolatedHit) {
+
+    private int getIsolatedHitIndex(Point hitPoint) {
+        int hitX = (int) hitPoint.getX();
+        int hitY = (int) hitPoint.getY();
+        int startX = (int) start.getX();
+        int endX = (int) end.getX();
+        int startY = (int) start.getY();
+        int endY = (int) end.getY();
+
+        if (hitX == startX && hitY == startY - 1) {
+            return 0;
+        } else if (hitX == startX && hitY == endY + 1) {
+            return 1;
+        } else if (hitX == endX && hitY == startY - 1) {
+            return 2;
+        } else if (hitX == endX && hitY == endY + 1) {
+            return 3;
+        } else if (hitY == startY && hitX == startX - 1) {
+            return 4;
+        } else if (hitY == startY && hitX == endX + 1) {
+            return 5;
+        } else if (hitY == endY && hitX == startX - 1) {
+            return 6;
+        } else { // hitY == endY && hitX == endX + 1
+            return 7;
+        }
+    }
+
+    private boolean checkIsolatedHits() {
+        for (boolean hit : isolatedHits) {
+            if (!hit) {
                 return false;
             }
         }
         return true;
     }
+
 }
 
 

@@ -57,15 +57,14 @@ public class Main {
                 Ship ship = null;
                 switch (shipType) {
                     case "Battleship":
-                        ship.comprobarSize();
+
                         ship = new Battleship(startPoint, endPoint);
                         break;
                     case "Canoe":
-                        ship.comprobarSize();
+
                         ship = new Canoe(startPoint, endPoint);
                         break;
                     case "Frigate":
-                        ship.comprobarSize();
                         ship = new Frigate(startPoint, endPoint);
                         break;
                     default:
