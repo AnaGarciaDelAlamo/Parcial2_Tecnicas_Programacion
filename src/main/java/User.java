@@ -61,26 +61,7 @@ public class User {
         this.ships.remove(ship);
     }
 
-    public static void main(String[] args) {
-        try {
-            Ship s1 = new Canoe(new Point(1,1), new Point(1,1));
-            Ship s2 = new Canoe(new Point(3,3), new Point(3,3 ));
-            ArrayList<Ship> ships = new ArrayList<>();
-            ships.add(s1);
-            ships.add(s2);
-            User user = new User(ships);
-
-            Point shot1 = new Point(1,1);
-            Point shot2 = new Point(1,2);
-            Point shot3 = new Point(3,4);
-
-            System.out.println(user.attack(shot1, user)); // Should print "Barco tocado" and "Quedan este número de barcos en la lista: 1"
-            System.out.println(user.attack(shot2, user)); // Should print "Barco tocado" and "Quedan este número de barcos en la lista: 1"
-            System.out.println(user.attack(shot3, user)); // Should print "Barco tocado", "Quedan este número de barcos en la lista: 0" and "El usuario ha perdido"
-        } catch (Exception e) {
-            System.out.println("Ha ocurrido una excepción: " + e.getMessage());
-        }
     }
-}
+
 
 
