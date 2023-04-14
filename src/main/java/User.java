@@ -49,20 +49,16 @@ public class User {
             if (ship.get_shot(shotPoint)) {
                 System.out.println("Barco tocado");
                 if(ship.isSunk())
-                    ships.remove(ship);
-                //System.out.println(ships.size());
+                user.getShips().remove(ship);
+                System.out.println("Quedan este número de barcos en la lista: " + user.getShips().size());
                 return true;
             }
         }
         return false;
     }
 
-    private void removeShip(Ship ship){
-
-        //System.out.println(this.ships.indexOf(ship));
-        //System.out.println(this.ships.size());
+    public void removeShip(Ship ship){
         this.ships.remove(ship);
-        //System.out.println(this.ships.size());
     }
 }
 

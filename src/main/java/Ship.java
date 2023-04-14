@@ -78,12 +78,12 @@ public abstract class Ship {
     }
 
 
-    public boolean equals(Ship ship) {
+    /*public boolean equals(Ship ship) {
         if (this.start.getX() == ship.getStart().getX() && this.start.getY() == ship.getStart().getY() &&
                 this.end.getX() == ship.getEnd().getX() && this.end.getY() == ship.getEnd().getY()){
             return true;
         }
         return false;
-    }
+    }*/
 
 }
