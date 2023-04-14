@@ -127,10 +127,8 @@ public class Main {
         User usuario2 = new User(barcos_2);
 
 
-        int barcosJugador1 = usuario1.getShips().size();
-        int barcosJugador2 = usuario2.getShips().size();
 
-        while (barcosJugador1 > 0 && barcosJugador2 > 0) {
+        while (usuario1.getShips().size() > 0 && usuario2.getShips().size() > 0) {
             //Juego jugador 1
             System.out.println("Jugador 1 ataca");
             System.out.println("Ingrese las coordenadas de ataque (x, y):");
@@ -139,13 +137,9 @@ public class Main {
             Point attackPoint = new Point(attackX, attackY);
             usuario1.attack(attackPoint, usuario2);
 
-            //Verificar si jugador 2 perdió
-            if (barcosJugador2 == usuario2.getShips().size()) {
-                barcosJugador2--;
-            }
 
             //Verificar si jugador 2 perdió
-            if (barcosJugador2 == 0) {
+            if (usuario2.getShips().size()== 0) {
                 System.out.println("Jugador 1 ha ganado el juego!");
                 break;
             }
@@ -158,13 +152,9 @@ public class Main {
             Point attackPoint2 = new Point(attackX2, attackY2);
             usuario2.attack(attackPoint2, usuario1);
 
-            //Verificar si jugador 1 perdió
-            if (barcosJugador1 == usuario1.getShips().size()) {
-                barcosJugador1--;
-            }
 
             //Verificar si jugador 1 perdió
-            if (barcosJugador1 == 0) {
+            if (usuario1.getShips().size() == 0) {
                 System.out.println("Jugador 2 ha ganado el juego!");
                 break;
             }
