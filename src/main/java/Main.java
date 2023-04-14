@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
+        int maxShipCount;
        /* Canoe canoa_1 = new Canoe(new Point(1,1), new Point(1,1));
         Canoe canoa_2 = new Canoe(new Point(1,1), new Point(1,1));
 
@@ -22,11 +23,14 @@ public class Main {
         //System.out.println(barcos_1.size());
 
 
-        System.out.println("Confuguración de los barcos jugador 1");
-        System.out.println("Ingrese la cantidad de barcos (3 max):");
-        int maxShipCount = sc.nextInt();
-        int shipCount = 0;
+        do {
+            System.out.println("Configuración de los barcos jugador 1");
+            System.out.println("Ingrese la cantidad de barcos (3 max):");
+            maxShipCount = sc.nextInt();
+        } while (maxShipCount >= 3);
 
+
+        int shipCount = 0;
         ArrayList<Ship> barcos_1 = new ArrayList<>();
 
         while (shipCount < maxShipCount) {
@@ -70,6 +74,7 @@ public class Main {
                 break;
             }
         }
+
 
 
 
