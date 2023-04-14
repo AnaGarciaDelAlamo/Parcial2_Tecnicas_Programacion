@@ -1,24 +1,60 @@
+import org.junit.jupiter.api.Test;
+
+import java.awt.*;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    @org.junit.jupiter.api.Test
-    void isAlive() {
+    @Test
+    void isAlive() throws Exception {
+        ArrayList<Ship> ships = new ArrayList<>();
+        ships.add(new Canoe(new Point(0, 0), new Point(0, 0)));
+        User user = new User(ships);
+        assertTrue(user.isAlive());
+        user.die();
+        assertFalse(user.isAlive());
     }
 
-    @org.junit.jupiter.api.Test
-    void setAlive() {
+    @Test
+    void setAlive() throws Exception {
+        ArrayList<Ship> ships = new ArrayList<>();
+        ships.add(new Canoe(new Point(0, 0), new Point(0, 0)));
+        User user = new User(ships);
+        user.setAlive(false);
+        assertFalse(user.isAlive());
+        user.setAlive(true);
+        assertTrue(user.isAlive());
     }
 
-    @org.junit.jupiter.api.Test
-    void die() {
+    @Test
+    void die() throws Exception {
+        ArrayList<Ship> ships = new ArrayList<>();
+        ships.add(new Canoe(new Point(0, 0), new Point(0 ,0)));
+        User user = new User(ships);
+        assertTrue(user.isAlive());
+        user.die();
+        assertFalse(user.isAlive());
     }
 
-    @org.junit.jupiter.api.Test
-    void getShips() {
+    @Test
+    void getShips() throws Exception {
+        ArrayList<Ship> ships = new ArrayList<>();
+        ships.add(new Canoe(new Point(0, 0), new Point(0, 0)));
+        User user = new User(ships);
+        assertEquals(user.getShips(), ships);
     }
 
-    @org.junit.jupiter.api.Test
-    void attack() {
+    @Test
+    void attack() throws Exception {
+        // Test attacking a ship
+        ArrayList<Ship> ships = new ArrayList<>();
+        ships.add(new Canoe(new Point(0, 0), new Point(0, 0)));
+        User user = new User(ships);
+        Point shotPoint = new Point(0, 0);
+        assertTrue(user.attack(shotPoint, user));
+        assertEquals(user.getShips().size(), 0);
+
     }
 }
