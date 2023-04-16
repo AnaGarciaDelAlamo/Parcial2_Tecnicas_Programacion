@@ -16,15 +16,18 @@ public abstract class Ship {
         this.hits = 0;
     }
 
-    private boolean isStraight(Point start, Point end){
-        return start.getX() == end.getX() || start.getY() == end.getY();
+    public boolean isStraight(Point start, Point end){
+        if (start.getX() == end.getX() || start.getY() == end.getY()){
+            return true;
+        }
+        return false;
     }
 
     /**
      * Calcula el tamaño del barco dada su posición de inicio y fin.
      * */
-    private int calculateSize(){
-        int size = (int) (start.getX() - end.getX());
+    public int calculateSize(){
+        int size = (int) (end.getX() - start.getX());
         if (size != 0)
             return Math.abs(size);
         return Math.abs((int)(start.getY() - end.getY()));

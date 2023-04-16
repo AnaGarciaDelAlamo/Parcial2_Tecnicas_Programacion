@@ -50,22 +50,35 @@ public class Main {
             switch (shipType){
                 case "Battleship":
                     Battleship battleship = new Battleship(startPoint, endPoint);
-                    barcos_1.add(battleship);
-                    System.out.println("Battleship añadido");
-                    shipCount++;
+                    if(battleship.isStraight(startPoint, endPoint)){
+                        barcos_1.add(battleship);
+                        System.out.println("Battleship añadido");
+                        shipCount++;
+                    }else{
+                        System.out.println("Las coordenadas no forman una linea recta.");
+                    }
                     break;
                 case "Canoe":
                     Canoe canoe = new Canoe(startPoint, endPoint);
+                    if (canoe.isStraight(startPoint, endPoint) == true){
                     barcos_1.add(canoe);
                     System.out.println("Canoe añadido");
                     shipCount++;
+                } else {
+                        System.out.println("Las coordenadas no forman una linea recta.");
+                    }
                     break;
                 case "Frigate":
                     Frigate frigate = new Frigate(startPoint, endPoint);
-                    barcos_1.add(frigate);
-                    System.out.println("Frigate añadido");
-                    shipCount++;
-                    break;
+                    if (frigate.isStraight(startPoint, endPoint) == true){
+                        barcos_1.add(frigate);
+                        System.out.println("Frigate añadido");
+                        shipCount++;
+                        break;
+                    }else{
+                        System.out.println("Las coordenadas no forman una linea recta.");
+                    }
+
                 default:
                     System.out.println("Tipo de barco no válido.");
             }
